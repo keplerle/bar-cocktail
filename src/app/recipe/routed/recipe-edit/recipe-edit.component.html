@@ -1,0 +1,15 @@
+<form class="example-container" [formGroup]="recipeForm">
+
+    <h2>Create new recipe</h2>
+
+      <mat-form-field> <input matInput formControlName="name" placeholder="Name" /> </mat-form-field>
+
+      <mat-form-field> <input matInput formControlName="picture" placeholder="Picture" /> </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput formControlName="description" placeholder="Description"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="editRecipe()">Edit</button>
+
+    </form>

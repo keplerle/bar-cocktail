@@ -1,0 +1,54 @@
+<mat-card class="example-card" *ngIf="recipe">
+  <div class="d-flex space-between h-100">
+    <div>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" ></div>
+        <mat-card-title>{{ recipe.name }}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="recipe.picture" [alt]="recipe.description" />
+      <mat-card-content *ngIf="showDetailFlag">
+        <p>{{ recipe.description }}</p>
+        <h4>Liste des ingrédients</h4>
+        <ul *ngIf="toggleFlag">
+          <li *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient.quantity }} {{ ingredient.unit }} of {{ ingredient.name }}
+          </li>
+        </ul>
+        <h4>Liste des instructions</h4>
+        <ul *ngIf="toggleFlag">
+          <li *ngFor="let instruction of (recipe.instructions | strToArray)">
+            {{ instruction }}
+          </li>
+        </ul>
+      </mat-card-content>
+    </div>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="toggle()"
+        *ngIf="showDetailFlag"
+      >
+        Toggle informations
+      </button>
+      <div class="button-container">
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="[recipe.id]"
+          *ngIf="!showDetailFlag"
+        >
+          Overview
+        </button>
+        <button mat-raised-button color="accent"  [routerLink]="['edit', recipe.id]" *ngIf="!showDetailFlag">
+            Edit
+          </button>
+        <button mat-raised-button color="warn" (click)="deleteRecipe(recipe.id)" *ngIf="!showDetailFlag">
+          Delete
+        </button>
+
+      </div>
+    </mat-card-actions>
+  </div>
+</mat-card>

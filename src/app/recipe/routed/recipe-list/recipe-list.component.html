@@ -1,0 +1,7 @@
+<div *ngIf="recipes">
+    <div class="main-container" @explainerAnim>
+        <app-recipe-detail class="col" [recipe]="recipe" *ngFor="let recipe of recipes" (eventDelete)="onDeleteHandler($event)"></app-recipe-detail>
+        </div>
+</div>
+
+
